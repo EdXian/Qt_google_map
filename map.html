@@ -1,8 +1,7 @@
-<!DOCTYPE html>
 <html>
   <head>
     <style>
-       #map {
+      #map {
         height: 400px;
         width: 100%;
        }
@@ -10,38 +9,39 @@
   </head>
   <body>
     <h3>My Google Maps Demo</h3>
-    <script src="./qwebchannel.js"></script>
     <div id="map"></div>
-
-
     <script>
+      var uluru = {lat: 28.3, lng: 60.9};
+      var Markers=[];
+      var map;
       function initMap() {
-        var uluru = {lat: -25.363, lng: 131.044};
-        var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 4,
-          center: uluru
-        });
-        var marker = new google.maps.Marker({
-          position: uluru,
-          map: map
-        });
-      }
-      function func() {
-          var uluru = {lat: 23.3, lng: 120.9};
-          var map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 10,
-            center: uluru
-          });
-          var marker = new google.maps.Marker({
-            position: uluru,
-            map: map
+       map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 4,
+        center: uluru
       });
-      var drawingManager = new google.maps.drawing.DrawingManager();
-      drawingManager.setMap(map);
+
+        var marker = new google.maps.Marker({
+          position: new google.maps.LatLng( 28.3,60.9),
+          map: map,
+          icon:'http://www.google.com/mapfiles/markerB.png',
+        });
+
+       //func(map);
+      }
+   function func(map) {
+
+        var marker = new google.maps.Marker({
+          position: new google.maps.LatLng( 23.3,120.9),
+          map: map,
+          icon:'http://www.google.com/mapfiles/markerA.png',
+        });
+
+         Markers.push(marker);
              }
+         //async
     </script>
-    <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA_iIaYqH8KQkC4rVm2IRLAqHiBawE0_Ag&callback=initMap&libraries=drawing">
+    <script  defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA_iIaYqH8KQkC4rVm2IRLAqHiBawE0_Ag&libraries=drawing&callback=initMap">
     </script>
   </body>
 </html>
