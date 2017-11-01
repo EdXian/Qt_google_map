@@ -72,25 +72,17 @@ void MainWindow::on_pushButton_2_clicked()
 void MainWindow::on_pushButton_clicked()
 {
 
-    /*
-     *  var marker = new google.maps.Marker({
-          position: new google.maps.LatLng( 23.3,120.9),
-          map: map,
-          icon:'http://www.google.com/mapfiles/markerA.png',
-        });
-
-         Markers.push(marker);
-     *
-     */
-//    QString data =
-//         QString("var marker = new google.maps.Marker({ ")
-//        +QString("position: new google.maps.LatLng( 50.3,120.9),")
-//        +QString(" map: map,")
-//        +QString(" });")
-//        +QString("Markers.push(marker);");
+    double lat = ui->get_lat_edit->text().toDouble();
+    double lng = ui->get_lng_edit->text().toDouble();
+    QString data =
+         QString("var marker = new google.maps.Marker({ ")
+        +QString("position: new google.maps.LatLng( %1,%2),").arg(lat).arg(lng)
+        +QString(" map: map,")
+        +QString(" });")
+        +QString("Markers.push(marker);");
 
     //,[](const QVariant &result){ qDebug() << result.toBool();}
 
-    QString data =QString("func(map)");
+    //QString data =QString("func(map)");
     ui->widget->page()->runJavaScript(data);
 }
